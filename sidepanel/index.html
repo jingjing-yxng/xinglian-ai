@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>达人外联助手</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="loginScreen" style="display:none;">
+      <div class="login-container">
+        <h1 class="login-title">达人外联助手</h1>
+        <p class="login-subtitle">登录 Outreach Hub</p>
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label">邮箱</label>
+            <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">密码</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+          <div id="loginError" style="display:none; color:var(--danger); font-size:12px; margin-bottom:8px;"></div>
+          <button type="submit" id="loginBtn" class="btn btn-primary btn-block">登录</button>
+        </form>
+        <p style="text-align:center; font-size:12px; color:var(--text-muted); margin-top:12px;">
+          没有账号？
+          <a href="https://outreach-hub-lac.vercel.app/signup" target="_blank" style="color:var(--primary); text-decoration:none;">注册</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Screen (after login) -->
+    <div id="mainScreen" style="display:none;">
+      <!-- Header -->
+      <header class="header">
+        <h1 class="logo">外联助手</h1>
+        <div class="platform-toggle">
+          <button class="platform-toggle-btn active" data-platform="douyin">抖音</button>
+          <button class="platform-toggle-btn" data-platform="xiaohongshu">小红书</button>
+        </div>
+        <div class="header-status" id="connectionStatus">未连接</div>
+      </header>
+
+      <!-- Hub Connection Status -->
+      <div id="hubStatus" class="hub-status">
+        <span class="hub-dot"></span>
+        <span id="hubStatusText">云端连接中...</span>
+        <span id="hubUser" class="hub-user"></span>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions" id="quickActions">
+        <div class="section-title">当前页面操作</div>
+        <div class="toolbar" id="pageActions">
+          <button class="btn btn-primary btn-sm" id="btnScan" disabled title="扫描当前页面的达人列表并同步到仪表盘">扫描页面</button>
+          <button class="btn btn-outline btn-sm" id="btnFollow" disabled title="关注当前个人主页的达人">关注</button>
+          <button class="btn btn-outline btn-sm" id="btnDM" disabled title="向当前达人发送个性化私信">发私信</button>
+        </div>
+      </div>
+
+      <!-- Action Queue Status -->
+      <div class="card" id="queueCard">
+        <div class="card-header">
+          <span class="card-title">任务队列</span>
+          <span id="queueCount" class="queue-count">0 待执行</span>
+        </div>
+        <div id="queueList" class="queue-list"></div>
+      </div>
+
+      <!-- Today's Stats -->
+      <div class="card" id="statsCard">
+        <div class="card-header">
+          <span class="card-title">今日统计</span>
+        </div>
+        <div class="dashboard-metrics" id="todayStats">
+          <div class="metric-card">
+            <div class="metric-value" id="statProspects">-</div>
+            <div class="metric-label">达人</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="statFR">-</div>
+            <div class="metric-label">好友请求</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="statMsg">-</div>
+            <div class="metric-label">消息</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="statNeg">-</div>
+            <div class="metric-label">洽谈回复</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open Dashboard Link -->
+      <div class="open-dashboard">
+        <a href="https://outreach-hub-lac.vercel.app/dashboard" target="_blank" class="btn btn-secondary btn-block">
+          打开完整仪表盘 →
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <div class="panel-footer">
+        <span id="footerEmail" class="footer-email"></span>
+        <button id="logoutBtn" class="btn btn-sm" style="color:var(--text-muted);">退出</button>
+      </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div id="toast-container"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../lib/storage.js"></script>
+  <script src="../lib/auth.js"></script>
+  <script src="../lib/api-client.js"></script>
+  <script src="../lib/action-executor.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
