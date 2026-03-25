@@ -26,7 +26,7 @@ const BaseExtractors = {
     const filtered = prospects.filter(p => !this._isInstitution(p.nickname, p.bio));
     const removed = before - filtered.length;
     if (removed > 0) {
-      console.log(`[Outreach] Filtered out ${removed} institutional/junk accounts`);
+      console.log(`[XingLian] Filtered out ${removed} institutional/junk accounts`);
     }
     return filtered;
   },

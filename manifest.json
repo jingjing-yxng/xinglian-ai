@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "达人外联助手",
-  "description": "AI-powered multi-platform influencer outreach remote control",
+  "name": "XingLian AI (星联AI)",
+  "description": "AI-powered multi-platform influencer outreach by xinglian.ai",
   "version": "2.1.0",
   "icons": {
     "16": "icons/logo.png",
@@ -61,6 +61,6 @@
       "16": "icons/logo.png",
       "48": "icons/logo.png"
     },
-    "default_title": "达人外联助手"
+    "default_title": "XingLian AI (星联AI)"
   }
 }

@@ -1,3 +1,5 @@
+## XingLian AI (星联AI) — Influencer Outreach Extension
+
 ## Tech Stack
 
 - TypeScript and JavaScript, with CSS for styling

@@ -25,7 +25,7 @@ const DouyinActions = {
   _triggerReactClick(el) {
     const props = this._getReactProps(el);
     if (props?.onClick) {
-      console.log('[Douyin Outreach] Found onClick via __reactProps$');
+      console.log('[XingLian:Douyin] Found onClick via __reactProps$');
       props.onClick({ preventDefault: () => {}, stopPropagation: () => {}, nativeEvent: {}, type: 'click', target: el, currentTarget: el });
       return true;
     }
@@ -39,7 +39,7 @@ const DouyinActions = {
     while (fiber && depth < 30) {
       const fp = fiber.memoizedProps || fiber.pendingProps;
       if (fp?.onClick) {
-        console.log('[Douyin Outreach] Found onClick on fiber at depth', depth);
+        console.log('[XingLian:Douyin] Found onClick on fiber at depth', depth);
         fp.onClick({ preventDefault: () => {}, stopPropagation: () => {}, nativeEvent: {}, type: 'click', target: el, currentTarget: el });
         return true;
       }
@@ -61,7 +61,7 @@ const DouyinActions = {
     }
 
     // Fallback: DOM events
-    console.log('[Douyin Outreach] No React handler found, using DOM events');
+    console.log('[XingLian:Douyin] No React handler found, using DOM events');
     return BaseActions._smartClick(el);
   },
 
@@ -107,7 +107,7 @@ const DouyinActions = {
           done = true;
           clearInterval(poller);
           clearTimeout(timer);
-          console.log('[Douyin Outreach] Chat input visible:', el.tagName, el.className?.substring?.(0, 50));
+          console.log('[XingLian:Douyin] Chat input visible:', el.tagName, el.className?.substring?.(0, 50));
           resolve(el);
         }
       };
@@ -117,7 +117,7 @@ const DouyinActions = {
         if (!done) {
           done = true;
           clearInterval(poller);
-          console.log('[Douyin Outreach] Chat input not visible after', timeoutMs, 'ms');
+          console.log('[XingLian:Douyin] Chat input not visible after', timeoutMs, 'ms');
           resolve(null);
         }
       }, timeoutMs);
@@ -137,7 +137,7 @@ const DouyinActions = {
       if (btns.length === 0) return { success: false, error: '未找到关注按钮' };
 
       await this._delay(500, 1500);
-      console.log('[Douyin Outreach] Clicking 关注 button');
+      console.log('[XingLian:Douyin] Clicking 关注 button');
       this._smartClick(btns[0]);
       await this._delay(1000, 2000);
 
@@ -170,16 +170,16 @@ const DouyinActions = {
           clipboardData: dt
         });
         element.dispatchEvent(pasteEvent);
-        console.log('[Douyin Outreach] Typed via paste event');
+        console.log('[XingLian:Douyin] Typed via paste event');
       } catch (e) {
-        console.log('[Douyin Outreach] Paste event failed, trying execCommand');
+        console.log('[XingLian:Douyin] Paste event failed, trying execCommand');
         document.execCommand('insertText', false, text);
       }
 
       await this._delay(200, 300);
 
       if (!element.textContent || element.textContent.trim().length === 0) {
-        console.log('[Douyin Outreach] Paste didn\'t work, trying composition events');
+        console.log('[XingLian:Douyin] Paste didn\'t work, trying composition events');
         element.focus();
         element.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true, data: '' }));
         document.execCommand('insertText', false, text);
@@ -208,7 +208,7 @@ const DouyinActions = {
         return { success: false, error: '未找到消息输入框' };
       }
 
-      console.log('[Douyin Outreach] Sending message to:', input.tagName, input.className?.substring?.(0, 40));
+      console.log('[XingLian:Douyin] Sending message to:', input.tagName, input.className?.substring?.(0, 40));
 
       await this._delay(500, 1000);
       await this._typeText(input, text);
@@ -223,13 +223,13 @@ const DouyinActions = {
       if (!sendBtn) sendBtn = findButtonByText(document, '发送');
 
       if (sendBtn) {
-        console.log('[Douyin Outreach] Clicking send button');
+        console.log('[XingLian:Douyin] Clicking send button');
         this._smartClick(sendBtn);
         await this._delay(1000, 2000);
         return { success: true, method: 'button' };
       }
 
-      console.log('[Douyin Outreach] No send button, trying Enter');
+      console.log('[XingLian:Douyin] No send button, trying Enter');
       input.focus();
       input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }));
       input.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }));
@@ -291,7 +291,7 @@ const DouyinActions = {
         return { success: false, error: '未找到私信按钮' };
       }
 
-      console.log('[Douyin Outreach] Found', candidates.length, '私信 candidates');
+      console.log('[XingLian:Douyin] Found', candidates.length, '私信 candidates');
 
       const clickTargets = [];
       for (const el of candidates) {
@@ -301,24 +301,24 @@ const DouyinActions = {
       }
 
       for (const target of clickTargets) {
-        console.log('[Douyin Outreach] Trying:', target.tagName, target.className?.substring?.(0, 50));
+        console.log('[XingLian:Douyin] Trying:', target.tagName, target.className?.substring?.(0, 50));
         this._smartClick(target);
 
         await this._delay(300, 500);
         let chatInput = this._findChatInput();
         if (chatInput) {
-          console.log('[Douyin Outreach] Chat opened!');
+          console.log('[XingLian:Douyin] Chat opened!');
           this._chatInput = chatInput;
           return { success: true };
         }
 
         if (window.location.href !== urlBefore) {
-          console.log('[Douyin Outreach] Navigated to:', window.location.href);
+          console.log('[XingLian:Douyin] Navigated to:', window.location.href);
           return { success: false, navigated: true };
         }
       }
 
-      console.log('[Douyin Outreach] Waiting for chat dialog...');
+      console.log('[XingLian:Douyin] Waiting for chat dialog...');
       const chatInput = await this._waitForChatInput(8000);
       if (chatInput) {
         this._chatInput = chatInput;

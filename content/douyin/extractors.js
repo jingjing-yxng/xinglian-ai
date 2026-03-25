@@ -7,7 +7,7 @@ const DouyinExtractors = {
 
   // Extract all creator cards from search results page
   extractSearchResults() {
-    console.log('[Douyin Outreach] Scanning search results...');
+    console.log('[XingLian:Douyin] Scanning search results...');
 
     // Strategy 1: Find all 关注 buttons, walk up to card container
     const results = this._extractViaFollowButtons();
@@ -19,7 +19,7 @@ const DouyinExtractors = {
 
     // Strategy 3: data-e2e selectors (may work on some versions)
     const cards = queryAll(document, DOUYIN_SELECTORS.search.userCards);
-    console.log('[Douyin Outreach] data-e2e cards found:', cards.length);
+    console.log('[XingLian:Douyin] data-e2e cards found:', cards.length);
     return this._filterInstitutions(cards.map(card => this._extractSearchCard(card)).filter(Boolean));
   },
 
@@ -36,7 +36,7 @@ const DouyinExtractors = {
       }
     }
 
-    console.log('[Douyin Outreach] Found 关注 buttons:', followBtns.length);
+    console.log('[XingLian:Douyin] Found 关注 buttons:', followBtns.length);
 
     const cards = [];
     const seen = new Set();
@@ -63,7 +63,7 @@ const DouyinExtractors = {
       if (extracted) cards.push(extracted);
     }
 
-    console.log('[Douyin Outreach] Extracted via follow buttons:', cards.length);
+    console.log('[XingLian:Douyin] Extracted via follow buttons:', cards.length);
     return cards;
   },
 
@@ -105,7 +105,7 @@ const DouyinExtractors = {
       if (extracted) cards.push(extracted);
     }
 
-    console.log('[Douyin Outreach] Extracted via fans text:', cards.length);
+    console.log('[XingLian:Douyin] Extracted via fans text:', cards.length);
     return cards;
   },
 
@@ -259,7 +259,7 @@ const DouyinExtractors = {
         profileLink = `https://www.douyin.com/user/${sec_user_id}`;
       }
 
-      console.log('[Douyin Outreach] Extracted:', { nickname, followersText, profileLink, bio: bio.substring(0, 50) });
+      console.log('[XingLian:Douyin] Extracted:', { nickname, followersText, profileLink, bio: bio.substring(0, 50) });
 
       return {
         sec_user_id,
@@ -272,7 +272,7 @@ const DouyinExtractors = {
         source: 'search'
       };
     } catch (e) {
-      console.error('[Douyin Outreach] Error extracting from container:', e);
+      console.error('[XingLian:Douyin] Error extracting from container:', e);
       return null;
     }
   },
@@ -354,7 +354,7 @@ const DouyinExtractors = {
         source: 'profile'
       };
     } catch (e) {
-      console.error('[Douyin Outreach] Error extracting profile:', e);
+      console.error('[XingLian:Douyin] Error extracting profile:', e);
       return null;
     }
   },

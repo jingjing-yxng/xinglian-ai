@@ -4,7 +4,7 @@
 (function() {
   'use strict';
 
-  console.log('[XHS Outreach] Content script loaded');
+  console.log('[XingLian:XHS] Content script loaded');
 
   // Connect to service worker via port
   let port = null;
@@ -12,7 +12,7 @@
     port = chrome.runtime.connect({ name: 'content-script-xiaohongshu' });
     port.onMessage.addListener(handlePortMessage);
     port.onDisconnect.addListener(() => {
-      console.log('[XHS Outreach] Port disconnected, reconnecting...');
+      console.log('[XingLian:XHS] Port disconnected, reconnecting...');
       setTimeout(connectPort, 1000);
     });
   }
@@ -138,7 +138,7 @@
   const urlObserver = new MutationObserver(() => {
     if (window.location.href !== lastUrl) {
       lastUrl = window.location.href;
-      console.log('[XHS Outreach] SPA navigation:', lastUrl);
+      console.log('[XingLian:XHS] SPA navigation:', lastUrl);
       chrome.runtime.sendMessage({
         target: 'side-panel',
         type: 'PAGE_CHANGED',

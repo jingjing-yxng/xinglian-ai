@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a PDF installation guide for the Douyin Outreach Extension."""
+"""Generate a PDF installation guide for the XingLian AI."""
 
 from fpdf import FPDF
 
@@ -7,7 +7,7 @@ class PDF(FPDF):
     def header(self):
         self.set_font('Helvetica', 'B', 10)
         self.set_text_color(150, 150, 150)
-        self.cell(0, 8, 'Douyin Outreach Extension - Installation Guide', align='R')
+        self.cell(0, 8, 'XingLian AI - Installation Guide', align='R')
         self.ln(12)
 
     def footer(self):
@@ -23,7 +23,7 @@ pdf.add_page()
 # Title
 pdf.set_font('Helvetica', 'B', 24)
 pdf.set_text_color(220, 53, 69)
-pdf.cell(0, 15, 'Douyin Outreach Extension', align='C', new_x="LMARGIN", new_y="NEXT")
+pdf.cell(0, 15, 'XingLian AI', align='C', new_x="LMARGIN", new_y="NEXT")
 pdf.set_font('Helvetica', '', 14)
 pdf.set_text_color(100, 100, 100)
 pdf.cell(0, 10, 'Installation Guide', align='C', new_x="LMARGIN", new_y="NEXT")
@@ -33,7 +33,7 @@ pdf.ln(10)
 pdf.set_font('Helvetica', '', 11)
 pdf.set_text_color(50, 50, 50)
 pdf.multi_cell(0, 6,
-    'This guide will walk you through installing the Douyin Outreach Extension '
+    'This guide will walk you through installing the XingLian AI '
     'on Google Chrome using Developer Mode. The process takes about 2 minutes.')
 pdf.ln(8)
 
@@ -45,7 +45,7 @@ pdf.set_font('Helvetica', '', 11)
 pdf.set_text_color(50, 50, 50)
 pdf.multi_cell(0, 6,
     '  - Google Chrome browser (latest version recommended)\n'
-    '  - The extension ZIP file (douyin-outreach-extension.zip)')
+    '  - The extension ZIP file (xinglian-ai.zip)')
 pdf.ln(8)
 
 # Steps
@@ -57,7 +57,7 @@ steps = [
             'You can put it anywhere you like (e.g., your Desktop or Documents folder).\n\n'
             'On Mac: Double-click the ZIP file to extract it.\n'
             'On Windows: Right-click the ZIP file and select "Extract All...".\n\n'
-            'You should now have a folder called "douyin-outreach-extension" containing '
+            'You should now have a folder called "xinglian-ai" containing '
             'files like manifest.json, sidepanel/, content/, etc.\n\n'
             'IMPORTANT: Remember where this folder is located. Do NOT delete or move this '
             'folder after installing - Chrome needs it to stay in place.'
@@ -87,7 +87,7 @@ steps = [
         'body': (
             'Click the "Load unpacked" button (the first of the three buttons).\n\n'
             'A file picker dialog will appear. Navigate to and select the '
-            '"douyin-outreach-extension" folder that you extracted in Step 1.\n\n'
+            '"xinglian-ai" folder that you extracted in Step 1.\n\n'
             'IMPORTANT: Select the FOLDER itself, not any individual file inside it. '
             'The folder should contain manifest.json at its top level.'
         )
@@ -96,7 +96,7 @@ steps = [
         'title': 'Step 5: Verify Installation',
         'body': (
             'After loading, you should see the extension appear in your extensions list '
-            'with the name "Douyin Outreach Extension" (or its Chinese name).\n\n'
+            'with the name "XingLian AI" (or its Chinese name).\n\n'
             'Make sure the toggle switch next to the extension is turned ON (blue).\n\n'
             'You should also see the extension icon appear in your Chrome toolbar '
             '(top-right area, near the address bar). If you don\'t see it, click the '
@@ -111,7 +111,7 @@ steps = [
             'right side of your browser showing the extension interface.\n\n'
             'The connection status in the top-right of the side panel should show '
             '"Connected" (or the Chinese equivalent) when you are on a Douyin page.\n\n'
-            'Go to the Settings tab first to configure your DeepSeek API key and other preferences.'
+            'Go to the Settings tab first to configure your Kimi API key and other preferences.'
         )
     },
 ]
@@ -145,8 +145,8 @@ issues = [
     },
     {
         'q': 'Extension icon not visible in toolbar',
-        'a': 'Click the puzzle piece icon in Chrome\'s toolbar, find the Douyin extension, '
-             'and click the pin icon next to it.'
+        'a': 'Click the puzzle piece icon in Chrome\'s toolbar, find XingLian AI, '
+             'and click the pin icon next to it to pin it to your toolbar.'
     },
     {
         'q': 'Extension disappeared after Chrome restart',
@@ -171,6 +171,6 @@ for issue in issues:
     pdf.ln(4)
 
 # Save
-output_path = '/Users/jingjingyang/douyin-outreach-extension/Installation_Guide.pdf'
+output_path = '/Users/jingjingyang/xinglian-ai/Installation_Guide.pdf'
 pdf.output(output_path)
 print(f'PDF saved to: {output_path}')

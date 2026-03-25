@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a Chinese PDF installation guide for the Douyin Outreach Extension."""
+"""Generate a Chinese PDF installation guide for XingLian AI."""
 
 from fpdf import FPDF
 
@@ -9,7 +9,7 @@ class PDF(FPDF):
     def header(self):
         self.set_font('STHeiti', '', 10)
         self.set_text_color(150, 150, 150)
-        self.cell(0, 8, '抖音外联助手 - 安装指南', align='R')
+        self.cell(0, 8, '星联AI - 安装指南', align='R')
         self.ln(12)
 
     def footer(self):
@@ -26,7 +26,7 @@ pdf.add_page()
 # Title
 pdf.set_font('STHeiti', '', 24)
 pdf.set_text_color(220, 53, 69)
-pdf.cell(0, 15, '抖音外联助手', align='C', new_x="LMARGIN", new_y="NEXT")
+pdf.cell(0, 15, '星联AI', align='C', new_x="LMARGIN", new_y="NEXT")
 pdf.set_font('STHeiti', '', 14)
 pdf.set_text_color(100, 100, 100)
 pdf.cell(0, 10, '安装指南', align='C', new_x="LMARGIN", new_y="NEXT")
@@ -37,7 +37,7 @@ pdf.set_font('STHeiti', '', 11)
 pdf.set_text_color(50, 50, 50)
 pdf.multi_cell(0, 7,
     '本指南将帮助您在 Google Chrome 浏览器上通过开发者模式安装'
-    '抖音外联助手扩展程序。整个过程大约需要 2 分钟。')
+    '星联AI扩展程序。整个过程大约需要 2 分钟。')
 pdf.ln(8)
 
 # Prerequisites
@@ -48,7 +48,7 @@ pdf.set_font('STHeiti', '', 11)
 pdf.set_text_color(50, 50, 50)
 pdf.multi_cell(0, 7,
     '  · Google Chrome 浏览器（建议使用最新版本）\n'
-    '  · 扩展程序 ZIP 压缩包（douyin-outreach-extension.zip）')
+    '  · 扩展程序 ZIP 压缩包（xinglian-ai.zip）')
 pdf.ln(8)
 
 # Steps
@@ -60,7 +60,7 @@ steps = [
             '（例如桌面或文档文件夹）。\n\n'
             'Mac 系统：双击 ZIP 文件即可自动解压。\n'
             'Windows 系统：右键点击 ZIP 文件，选择"全部解压缩..."。\n\n'
-            '解压后，您应该会看到一个名为 "douyin-outreach-extension" 的文件夹，'
+            '解压后，您应该会看到一个名为 "xinglian-ai" 的文件夹，'
             '里面包含 manifest.json、sidepanel/、content/ 等文件。\n\n'
             '重要提示：请记住这个文件夹的位置。安装完成后请勿删除或移动此文件夹，'
             'Chrome 需要它保持在原位才能正常运行。'
@@ -89,7 +89,7 @@ steps = [
         'body': (
             '点击"加载已解压的扩展程序"按钮（三个按钮中的第一个）。\n\n'
             '系统会弹出文件选择对话框，找到并选择您在第一步中解压出来的'
-            ' "douyin-outreach-extension" 文件夹。\n\n'
+            ' "xinglian-ai" 文件夹。\n\n'
             '重要提示：请选择文件夹本身，而不是文件夹内的某个文件。'
             '该文件夹的顶层目录中应包含 manifest.json 文件。'
         )
@@ -97,11 +97,11 @@ steps = [
     {
         'title': '第五步：验证安装',
         'body': (
-            '加载成功后，您应该能在扩展程序列表中看到"抖音外联助手"。\n\n'
+            '加载成功后，您应该能在扩展程序列表中看到"星联AI"。\n\n'
             '请确保扩展程序旁边的开关处于开启状态（蓝色）。\n\n'
             '同时，您应该能在 Chrome 工具栏（地址栏右侧区域）看到扩展程序图标。'
             '如果没有看到，请点击工具栏上的拼图图标，'
-            '找到抖音外联助手并点击旁边的固定图标将其固定到工具栏。'
+            '找到星联AI并点击旁边的固定图标将其固定到工具栏。'
         )
     },
     {
@@ -111,7 +111,7 @@ steps = [
             '点击工具栏中的扩展程序图标，浏览器右侧会弹出一个侧边面板，'
             '显示扩展程序的操作界面。\n\n'
             '当您在抖音页面上时，侧边面板右上角的连接状态应显示"已连接"。\n\n'
-            '请先进入"设置"标签页，配置您的 DeepSeek API 密钥和其他偏好设置。'
+            '请先进入"设置"标签页，配置您的 Kimi API 密钥和其他偏好设置。'
         )
     },
 ]
@@ -145,7 +145,7 @@ issues = [
     },
     {
         'q': '工具栏中看不到扩展程序图标',
-        'a': '点击 Chrome 工具栏上的拼图图标，找到抖音外联助手，'
+        'a': '点击 Chrome 工具栏上的拼图图标，找到星联AI，'
              '然后点击旁边的固定图标将其固定到工具栏。'
     },
     {
@@ -170,6 +170,6 @@ for issue in issues:
     pdf.ln(4)
 
 # Save
-output_path = '/Users/jingjingyang/douyin-outreach-extension/安装指南.pdf'
+output_path = '/Users/jingjingyang/xinglian-ai/安装指南.pdf'
 pdf.output(output_path)
 print(f'PDF saved to: {output_path}')

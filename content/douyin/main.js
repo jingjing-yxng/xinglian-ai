@@ -4,7 +4,7 @@
 (function() {
   'use strict';
 
-  console.log('[Douyin Outreach] Content script loaded');
+  console.log('[XingLian:Douyin] Content script loaded');
 
   // Connect to service worker via port
   let port = null;
@@ -12,7 +12,7 @@
     port = chrome.runtime.connect({ name: 'content-script-douyin' });
     port.onMessage.addListener(handlePortMessage);
     port.onDisconnect.addListener(() => {
-      console.log('[Douyin Outreach] Port disconnected, reconnecting...');
+      console.log('[XingLian:Douyin] Port disconnected, reconnecting...');
       setTimeout(connectPort, 1000);
     });
   }
@@ -114,7 +114,7 @@
   const urlObserver = new MutationObserver(() => {
     if (window.location.href !== lastUrl) {
       lastUrl = window.location.href;
-      console.log('[Douyin Outreach] SPA navigation:', lastUrl);
+      console.log('[XingLian:Douyin] SPA navigation:', lastUrl);
       chrome.runtime.sendMessage({
         target: 'side-panel',
         type: 'PAGE_CHANGED',
